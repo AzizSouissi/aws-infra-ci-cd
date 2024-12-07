@@ -2,6 +2,8 @@
 
 This repository contains all the necessary files and configurations to automate the provisioning, configuration, and deployment of a web application on AWS using **Terraform**, **Ansible**, **Docker**, and **GitHub Actions**.
 
+---
+
 ## **Overview**
 
 This project automates the deployment of a containerized web application in the following steps:
@@ -19,7 +21,8 @@ The architecture for this project includes the following components:
 - **Containerization**: Docker is used to package the web application.
 - **CI/CD Automation**: GitHub Actions automate Docker image builds and deployment workflows.
 
-![Architecture Diagram](path/to/your/diagram.png)
+![Architecture Diagram](docs/architecture-diagram.png)  
+*Make sure to replace `docs/architecture-diagram.png` with the actual path to your diagram.*
 
 ---
 
@@ -27,10 +30,10 @@ The architecture for this project includes the following components:
 
 ### **Prerequisites**
 Make sure you have the following installed:
-- **Terraform** (`https://www.terraform.io/`)
-- **Ansible** (`https://www.ansible.com/`)
-- **Docker** (`https://www.docker.com/`)
-- **Git** (`https://git-scm.com/`)
+- **Terraform**: [Terraform](https://www.terraform.io/)
+- **Ansible**: [Ansible](https://www.ansible.com/)
+- **Docker**: [Docker](https://www.docker.com/)
+- **Git**: [Git](https://git-scm.com/)
 
 You’ll also need:
 - An AWS account with programmatic access (Access Key ID and Secret Access Key).
@@ -46,11 +49,55 @@ git clone https://github.com/<YOUR_USERNAME>/<REPOSITORY_NAME>.git
 cd <REPOSITORY_NAME>
 ```
 
+### **Step 2: Configure Terraform**
+1. Navigate to the `terraform/` directory:
+   ```bash
+   cd terraform
+   ```
+2. Initialize Terraform:
+   ```bash
+   terraform init
+   ```
+3. Apply Terraform configurations:
+   ```bash
+   terraform apply
+   ```
+   This will provision AWS resources like VPC, Subnet, Security Group, and EC2 instance.
+
+### **Step 3: Configure Ansible**
+1. Navigate to the `ansible/` directory:
+   ```bash
+   cd ansible
+   ```
+2. Update the inventory file with the public IP of your EC2 instance.
+3. Run the playbook to configure the EC2 instance:
+   ```bash
+   ansible-playbook main.yml
+   ```
+
+### **Step 4: CI/CD Pipeline**
+1. Commit and push changes to the GitHub repository.
+2. GitHub Actions will automatically trigger the CI/CD workflow:
+   - Build the Docker image.
+   - Push the image to GitHub Packages.
+   - Deploy the application on the provisioned EC2 instance.
+
 ---
 
-### **How to Adapt This for Your Needs**
-1. Replace placeholders like `<YOUR_USERNAME>`, `<APP_NAME>`, and `<EC2_PUBLIC_IP>` with actual values.
+## **How to Adapt This for Your Needs**
+1. Replace placeholders like `<YOUR_USERNAME>`, `<REPOSITORY_NAME>`, and `<EC2_PUBLIC_IP>` with actual values.
 2. Update the folder structure if your project requires additional configurations.
 3. Add more details about your specific application in the **Dockerfile** and **app/** directory.
 
-Let me know if you need further assistance!
+---
+
+## **License**
+This project is licensed under the [MIT License](LICENSE).  
+You are free to use, modify, and distribute this software, provided that proper attribution is given.
+
+---
+
+### **How to Add the Architecture Diagram**
+1. Save the architecture diagram as `architecture-diagram.png`.
+2. Place it in a `docs/` directory at the root of your repository.
+3. Ensure the path `docs/architecture-diagram.png` matches the image location.
