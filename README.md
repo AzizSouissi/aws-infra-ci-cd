@@ -22,7 +22,6 @@ The architecture for this project includes the following components:
 - **CI/CD Automation**: GitHub Actions automate Docker image builds and deployment workflows.
 
 ![Architecture Diagram](docs/architecture-diagram.png)  
-*Make sure to replace `docs/architecture-diagram.png` with the actual path to your diagram.*
 
 ---
 
