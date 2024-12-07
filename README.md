@@ -94,10 +94,3 @@ cd aws-infra-ci-cd
 ## **License**
 This project is licensed under the [MIT License](LICENSE).  
 You are free to use, modify, and distribute this software, provided that proper attribution is given.
-
----
-
-### **How to Add the Architecture Diagram**
-1. Save the architecture diagram as `architecture-diagram.png`.
-2. Place it in a `docs/` directory at the root of your repository.
-3. Ensure the path `docs/architecture-diagram.png` matches the image location.
