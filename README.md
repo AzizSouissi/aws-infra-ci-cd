@@ -45,8 +45,8 @@ You’ll also need:
 
 ### **Step 1: Clone the Repository**
 ```bash
-git clone https://github.com/<YOUR_USERNAME>/<REPOSITORY_NAME>.git
-cd <REPOSITORY_NAME>
+git clone [https://github.com/<YOUR_USERNAME>/<REPOSITORY_NAME>.git](https://github.com/AzizSouissi/aws-infra-ci-cd.git)
+cd aws-infra-ci-cd
 ```
 
 ### **Step 2: Configure Terraform**
