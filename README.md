@@ -44,7 +44,7 @@ You’ll also need:
 
 ### **Step 1: Clone the Repository**
 ```bash
-git clone [https://github.com/<YOUR_USERNAME>/<REPOSITORY_NAME>.git](https://github.com/AzizSouissi/aws-infra-ci-cd.git)
+git clone https://github.com/AzizSouissi/aws-infra-ci-cd.git
 cd aws-infra-ci-cd
 ```
 
@@ -80,13 +80,6 @@ cd aws-infra-ci-cd
    - Build the Docker image.
    - Push the image to GitHub Packages.
    - Deploy the application on the provisioned EC2 instance.
-
----
-
-## **How to Adapt This for Your Needs**
-1. Replace placeholders like `<YOUR_USERNAME>`, `<REPOSITORY_NAME>`, and `<EC2_PUBLIC_IP>` with actual values.
-2. Update the folder structure if your project requires additional configurations.
-3. Add more details about your specific application in the **Dockerfile** and **app/** directory.
 
 ---
 
