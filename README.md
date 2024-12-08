@@ -21,7 +21,7 @@ The architecture for this project includes the following components:
 - **Containerization**: Docker is used to package the web application.
 - **CI/CD Automation**: GitHub Actions automate Docker image builds and deployment workflows.
 
-![Architecture Diagram](docs/architecture-diagram.png)  
+![Architecture Diagram](docs/architecture-diagram.pn)  
 
 ---
 
