@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  terraform:
+    image: hashicorp/terraform:latest
+    container_name: terraform
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: "terraform"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+
+  ansible:
+    image: quay.io/ansible/ansible:latest
+    container_name: ansible
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: "ansible-playbook"
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
+
+  docker:
+    image: docker:latest
+    container_name: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: "/bin/sh"
+
+  awscli:
+    image: amazon/aws-cli:latest
+    container_name: awscli
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: "aws"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}
+
+  git:
+    image: alpine/git:latest
+    container_name: git
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    entrypoint: "git"
