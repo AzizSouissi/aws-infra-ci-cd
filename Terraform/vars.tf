@@ -1,5 +1,5 @@
 variable "profile" {
     type = string
-    description = "The AWS profile, used in the authentication procedure"
+    description = "AWS profile"
     default = "admin"
 }

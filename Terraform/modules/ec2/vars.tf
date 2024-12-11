@@ -6,12 +6,12 @@ variable "instance_type" {
 variable "instance_ami" {
     type = map(string)
     default = {
-        id = "ami-04b70fa74e45c3917"
+        id = "ami-0a5ee67e16e2e3530"
         user = "ubuntu"
     }
 }
 
 variable "key-pair-name" {
     type = string
-    default = "MlopsKeyPair"
+    default = "ci_cd_key"
 }

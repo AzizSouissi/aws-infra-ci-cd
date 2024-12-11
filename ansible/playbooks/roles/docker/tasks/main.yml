@@ -1,0 +1,34 @@
+- name: Install system dependencies
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+    state: latest
+    update_cache: true
+
+- name: Import Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Configure Docker APT repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: present
+
+- name: Update package cache and install Docker
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+
+- name: Add user to Docker group
+  user:
+    name: ubuntu
+    groups: docker
+    append: yes
