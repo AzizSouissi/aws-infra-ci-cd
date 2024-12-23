@@ -12,7 +12,7 @@
   shell: "tar xzf ~/actions-runner/actions-runner-linux-x64-2.316.0.tar.gz -C ~/actions-runner/"
 
 - name: Configure self-hosted runner
-  shell: "~/actions-runner/config.sh remove --token {{ TOKEN }} && ~/actions-runner/config.sh --url https://github.com/gara2000/infrastructure_automation --token {{ TOKEN }} --unattended"
+  shell: "~/actions-runner/config.sh remove --token {{ TOKEN }} && ~/actions-runner/config.sh --url https://github.com/AzizSouissi/aws-infra-ci-cd --token {{ TOKEN }} --unattended"
 
 - name: Launch self-hosted runner process
   shell: "nohup /home/ubuntu/actions-runner/run.sh > /home/ubuntu/actions-runner/log.out 2>&1 &"
