@@ -1,59 +1,74 @@
-name: Build application image, push to GitHub registry, and deploy to server
+# name: Build application image, push to GitHub registry, and deploy to server
 
-on:
-  push:
-    branches: [ main ]
-    paths:
-      - docker/app/*
-      - docker/Dockerfile
-      - .github/workflows/deploy.yml
-      - trigger
+# on:
+#   # Trigger the workflow when changes are pushed to the 'main' branch
+#   # and specific paths are modified.
+#   push:
+#     branches: [ main ]
+#     paths:
+#       - docker/app/*  # Changes in the app directory within the docker folder
+#       - docker/Dockerfile  # Changes to the Dockerfile in the docker folder
+#       - .github/workflows/deploy.yml  # Changes to this workflow file
+#       - trigger  # A specific file to trigger the workflow manually
 
-  workflow_dispatch:
+#   # Allow manual triggering of the workflow.
+#   workflow_dispatch:
 
-jobs:
-  build-image:
-    runs-on: ubuntu-latest
-    steps:
+# jobs:
+#   build-image:
+#     # Define the environment for the build job.
+#     runs-on: ubuntu-latest
+#     steps:
 
-    - uses: actions/checkout@v2
+#     # Step 1: Check out the repository code.
+#     - uses: actions/checkout@v2
 
-    - name: Log in to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GH_REGISTRY }}
+#     # Step 2: Log in to GitHub Container Registry using credentials.
+#     - name: Log in to GitHub Container Registry
+#       uses: docker/login-action@v1
+#       with:
+#         registry: ghcr.io  # GitHub Container Registry endpoint
+#         username: ${{ github.repository_owner }}  # GitHub username
+#         password: ${{ secrets.GH_REGISTRY }}  # Encrypted secret for the password
 
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2
-      with:
-        context: ./docker
-        tags: ghcr.io/${{ github.repository_owner }}/app-image:latest
-        push: true           
+#     # Step 3: Build and push the Docker image to the registry.
+#     - name: Build and push Docker image
+#       uses: docker/build-push-action@v2
+#       with:
+#         context: ./docker  # Directory containing Docker context
+#         tags: ghcr.io/${{ github.repository_owner }}/app-image:latest  # Image tag
+#         push: true  # Push the image to the registry after building
 
-  deploy-application:
-    needs: build-image
-    runs-on: self-hosted
-    steps:
+#   deploy-application:
+#     # This job depends on the successful completion of 'build-image'.
+#     needs: build-image
+#     # Specify that this job runs on a self-hosted runner.
+#     runs-on: self-hosted
+#     steps:
 
-      - uses: actions/checkout@v2
+#       # Step 1: Check out the repository code.
+#       - uses: actions/checkout@v2
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GH_REGISTRY }}
+#       # Step 2: Log in to GitHub Container Registry to pull the image.
+#       - name: Log in to GitHub Container Registry
+#         uses: docker/login-action@v1
+#         with:
+#           registry: ghcr.io  # GitHub Container Registry endpoint
+#           username: ${{ github.repository_owner }}  # GitHub username
+#           password: ${{ secrets.GH_REGISTRY }}  # Encrypted secret for the password
 
-      - name: Adjust permissions for Docker socket
-        run: sudo chmod 666 /var/run/docker.sock
+#       # Step 3: Ensure the Docker socket is accessible by the current user.
+#       - name: Adjust permissions for Docker socket
+#         run: sudo chmod 666 /var/run/docker.sock
 
-      - name: Pull Docker image from GitHub Container Registry
-        run: docker pull ghcr.io/${{ github.repository_owner }}/app-image:latest
+#       # Step 4: Pull the Docker image from the registry.
+#       - name: Pull Docker image from GitHub Container Registry
+#         run: docker pull ghcr.io/${{ github.repository_owner }}/app-image:latest
 
-      - name: Remove old running containers (if any)
-        run: docker rm -f app-container
+#       # Step 5: Remove any existing container with the same name.
+#       - name: Remove old running containers (if any)
+#         run: docker rm -f app-container
 
-      - name: Run the application container
-        run: docker run -d -p 8080:8080 --name app-container ghcr.io/${{ github.repository_owner }}/app-image:latest
+#       # Step 6: Run the Docker container from the pulled image.
+#       - name: Run the application container
+#         run: docker run -d -p 8080:8080 --name app-container ghcr.io/${{ github.repository_owner }}/app-image:latest
