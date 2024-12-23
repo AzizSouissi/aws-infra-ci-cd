@@ -1,4 +1,4 @@
-## **Acknowledgment**
+# Acknowledgment
 Special thanks to [gara2000](https://github.com/gara2000) for their project, which served as a valuable reference and inspiration for this implementation.
 
 ---
