@@ -1,3 +1,8 @@
+## **Acknowledgment**
+Special thanks to [gara2000](https://github.com/gara2000) for their project, which served as a valuable reference and inspiration for this implementation.
+
+---
+
 # AWS Infrastructure CI/CD Automation
 
 This repository contains all the necessary files and configurations to automate the provisioning, configuration, and deployment of a web application on AWS using **Terraform**, **Ansible**, **Docker**, and **GitHub Actions**.
